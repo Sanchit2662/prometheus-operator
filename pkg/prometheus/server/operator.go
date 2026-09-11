@@ -941,7 +941,7 @@ func (c *Operator) sync(ctx context.Context, key string) (func(context.Context) 
 	c.recordDeprecatedFields(key, logger, p)
 
 	if c.topologyShardingEnabled {
-		if msg, ok := prompkg.UnbalancedTopologyShardingMessage(p); ok {
+		if ok, msg := prompkg.UnbalancedTopologyShardingMessage(p); ok {
 			logger.Warn(msg)
 			c.reconciliations.SetReasonAndMessage(key, operator.UnbalancedTopologyShardingReason, msg)
 		}

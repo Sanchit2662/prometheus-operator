@@ -514,7 +514,7 @@ func TestUnbalancedTopologyShardingMessage(t *testing.T) {
 				},
 			}
 
-			msg, ok := UnbalancedTopologyShardingMessage(p)
+			ok, msg := UnbalancedTopologyShardingMessage(p)
 			require.Equal(t, tc.expectedWarn, ok)
 			if tc.expectedWarn {
 				require.NotEmpty(t, msg)

@@ -683,7 +683,7 @@ func (c *Operator) sync(ctx context.Context, key string) error {
 	}
 
 	if c.topologyShardingEnabled {
-		if msg, ok := prompkg.UnbalancedTopologyShardingMessage(p); ok {
+		if ok, msg := prompkg.UnbalancedTopologyShardingMessage(p); ok {
 			logger.Warn(msg)
 			c.reconciliations.SetReasonAndMessage(key, operator.UnbalancedTopologyShardingReason, msg)
 		}
